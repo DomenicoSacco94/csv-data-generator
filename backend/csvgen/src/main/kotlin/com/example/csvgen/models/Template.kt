@@ -9,6 +9,6 @@ data class Template(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
     @Column(nullable = false)
-    val name: String,
-    val description: String? = null,
+    var name: String,
+    var description: String? = null,
 )
