@@ -1,19 +1,19 @@
-server:
-  port: 8081  # Backend runs on port 8081
-
 spring:
   application:
     name: csvgen
   datasource:
-    url: jdbc:postgresql://database:5432/mydb  # Database container hostname and port
-    username: user  # Matches the credentials in docker-compose.yml
+    url: jdbc:postgresql://database:5432/mydb
+    username: user
     password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update  # Automatically updates the database schema
+      ddl-auto: none  # Disable auto schema update when using Liquibase
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         boot:
           allow_jdbc_metadata_access: false
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml

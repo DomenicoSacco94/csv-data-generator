@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/16-09-001-create-templates-table.sql
+  - include:
+      file: db/changelog/16-09-002-create-columns-table.sql
