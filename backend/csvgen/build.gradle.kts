@@ -28,6 +28,9 @@ dependencies {
     // PostgreSQL dependency
     runtimeOnly("org.postgresql:postgresql:42.7.3")
 
+    // Hibernate core dependency
+    implementation("org.hibernate:hibernate-core:6.5.2.Final")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
