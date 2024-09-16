@@ -1,0 +1,20 @@
+server:
+  port: 8081  # Backend runs on port 8081
+
+spring:
+  application:
+    name: csvgen
+  datasource:
+    url: jdbc:postgresql://database:5432/mydb  # Database container hostname and port
+    username: user  # Matches the credentials in docker-compose.yml
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Automatically updates the database schema
+    show-sql: true  # Shows SQL queries in logs
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG  # Logs HTTP requests for debugging (optional)
