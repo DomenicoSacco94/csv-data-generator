@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { fetchMessage } from '@/services/apiService';
 
 export default {
   data() {
@@ -15,21 +15,16 @@ export default {
     };
   },
   created() {
-    this.fetchMessage();
+    this.loadMessage();
   },
   methods: {
-    async fetchMessage() {
+    async loadMessage() {
       try {
-        const response = await axios.get('http://localhost:8081/hello');
-        this.message = response.data;
+        this.message = await fetchMessage();
       } catch (error) {
-        console.error('There was an error fetching the message!', error);
+        console.error('There was an error loading the message!', error);
       }
     }
   }
 }
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>
