@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CsvgenApplication
 
 fun main(args: Array<String>) {
-	runApplication<CsvgenApplication>(*args)
+    runApplication<CsvgenApplication>(*args)
 }

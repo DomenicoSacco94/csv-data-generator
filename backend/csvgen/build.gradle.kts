@@ -1,9 +1,12 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
+
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
+    kotlin("plugin.jpa") version "1.9.25"
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
-    kotlin("plugin.jpa") version "1.9.25"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "com.example"
@@ -32,7 +35,7 @@ dependencies {
     implementation("org.hibernate:hibernate-core:6.5.2.Final")
 
     // Liquibase dependency
-    implementation("org.liquibase:liquibase-core:4.22.0")
+    implementation("org.liquibase:liquibase-core:4.29.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -45,6 +48,25 @@ kotlin {
     }
 }
 
+configure<SpotlessExtension> {
+    kotlin {
+        target("**/*.kt")
+        targetExclude("**/build/**")
+        ktlint()
+    }
+
+    kotlinGradle {
+        target("**/*.kts")
+        targetExclude("**/build/**")
+        // Apply ktlint formatting
+        ktlint()
+    }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.named("check") {
+    dependsOn("spotlessApply")
 }
