@@ -1,4 +1,4 @@
-# frontend
+# csvgen
 
 ## Project setup
 ```

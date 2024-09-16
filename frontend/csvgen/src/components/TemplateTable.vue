@@ -20,27 +20,31 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import { TemplateService } from '@/services/TemplateService';
+import { Template } from "@/models/Template";
 
 export default {
   name: 'TemplateTable',
-  data() {
-    return {
-      templates: []
-    };
-  },
-  created() {
-    this.fetchTemplates();
-  },
-  methods: {
-    async fetchTemplates() {
+  setup() {
+    const templates = ref<Template[]>([]);
+
+    const fetchTemplates = async () => {
+      const templateService = new TemplateService();
       try {
-        const response = await axios.get('http://localhost:8081/templates');
-        this.templates = response.data;
+        templates.value = await templateService.getAll();
       } catch (error) {
         console.error('Error fetching templates', error);
       }
-    }
+    };
+
+    onMounted(() => {
+      fetchTemplates();
+    });
+
+    return {
+      templates
+    };
   }
 };
 </script>

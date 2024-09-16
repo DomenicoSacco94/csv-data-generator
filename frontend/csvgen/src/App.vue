@@ -1,17 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Templates/>
+  <TemplateTable/>
 </template>
 
-<script>
-import Templates from './components/TemplateTable.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import TemplateTable from "@/components/TemplateTable.vue";
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
-    Templates
+    TemplateTable
   }
-}
+});
 </script>
 
 <style>
