@@ -12,7 +12,7 @@ services:
       sh -c "npm install -g yarn --force && yarn install && yarn serve"
 
   backend:
-    image: openjdk:21
+    image: gradle:8.10.0-jdk21
     container_name: kotlin-backend
     working_dir: /app
     volumes:
